@@ -1,0 +1,30 @@
+.index {
+    display: flex;
+
+    .user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 40px;
+        border: 1px solid #9f9fbd;
+        border-right: 0;
+
+        &:last-of-type {
+            border-right: 1px solid #9f9fbd;
+        }
+    }
+
+    .logo {
+        width: 100px;
+        border: 1px solid #9f9fbd;
+    }
+
+    &.server {
+        color: white;
+        font-size: 18px;
+        margin-top: 10px;
+        flex-direction: column;
+        background: url("../../images/logo.png");
+    }
+}

@@ -1,0 +1,4 @@
+{% macro loadEntryJS(fileName) -%}
+    <script src="{{ assets.js('vendor~'+ fileName + '.js') }}"></script>
+    <script src="{{ assets.js(fileName + '.js') }}"></script>
+{%- endmacro %}

@@ -1,0 +1,32 @@
+{% from "_lib.html" import loadEntryJS %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="shortcut icon" href="{{ assets.image('favicon.ico') }}">
+    <link rel="stylesheet" href="{{ assets.css('common.css') }}">
+
+    {% block header %}{% endblock %}
+
+    <script src="{{ assets.js('manifest.js') }}"></script>
+    <script src="{{ assets.js('common.js') }}"></script>
+
+    <script>
+      (function () {
+        window.SERVER_CONTEXT_PATH = "{{ url('') }}";
+        if (window.SERVER_CONTEXT_PATH && window.SERVER_CONTEXT_PATH.startsWith('/')) {
+          window.SERVER_CONTEXT_PATH = '/' + window.SERVER_CONTEXT_PATH;
+        }
+      })();
+    </script>
+</head>
+<body>
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+</body>
+</html>
