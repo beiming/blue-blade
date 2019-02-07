@@ -26,3 +26,8 @@ A quick web development scaffolding with Flask & React JS
 - inv server
 - start writing your code
  
+ 
+ ## TODO:
+ 
+ - js i18n
+ - js assets
