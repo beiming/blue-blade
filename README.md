@@ -17,6 +17,10 @@ A quick web development scaffolding with Flask & React JS
 - clone repo as your project name
 - rename app folder name if you want
 - edit babel.cfg with your app name
+- edit .gitignore path with your app name
+- edit run.py package name with your app name
+- edit task/misc.py package name with your app name
+- edit assets/webapck_conf/_common.js app name
 - create db if you use
 
 - pip install -r requirements.txt
