@@ -1,14 +1,11 @@
-import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyPlugin from 'copy-webpack-plugin';
 import {CONFIG} from './_common';
-import CleanPlugin from "clean-webpack-plugin";
 import merge from "webpack-merge";
 import base from "./base.babel";
 
 
 const plugins = [
-  new CleanPlugin(['manifest.json'], {root: path.resolve(CONFIG.paths.dist())}),
   new MiniCssExtractPlugin({
     filename: 'css/[name].css',
     chunkFilename: 'css/[name].css',

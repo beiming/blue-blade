@@ -9,24 +9,26 @@
 {% block footer %}
     {{ loadEntryJS('index') }}
     <script type="text/javascript">
-      window.appEntry.index({{ users|safe }});
+      window.appEntry.index({{ users|safe }})
     </script>
 {% endblock %}
 
 {% block content %}
-    <p>
-        I18n: {{ _('blue blade') }}
-    </p>
-    Render by JS
-    <div id="app"></div>
+    <div class="index-container">
+        <div class="title">
+            I18n: {{ _('blue blade') }}
+        </div>
+        Render by JS
+        <div id="app"></div>
 
-    <div class="index server">
-        <span>Render by Jinja</span>
-        <img class="logo" src="{{ assets.image('logo.png') }}" alt="logo">
-        <p>
-            {% for user in users %}
-                {{ user.name }}
-            {% endfor %}
-        </p>
+        <div class="index server">
+            <span>Render by Jinja</span>
+            <img class="logo" src="{{ assets.image('logo.png') }}" alt="logo">
+            <p>
+                {% for user in users %}
+                    {{ user.name }}
+                {% endfor %}
+            </p>
+        </div>
     </div>
 {% endblock %}

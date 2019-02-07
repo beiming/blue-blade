@@ -1,30 +1,50 @@
-.index {
-    display: flex;
+.index-container {
+    height: 100%;
+    width: 100%;
+    background: url("../../images/bg.jpg") no-repeat center / cover;
+    color: #47efac;
+    font-size: 18px;
 
-    .user {
+    .title {
+        color: #2196F3;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .index {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        height: 40px;
-        border: 1px solid #9f9fbd;
-        border-right: 0;
 
-        &:last-of-type {
-            border-right: 1px solid #9f9fbd;
+        .user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            height: 40px;
+            border: 1px solid #9f9fbd;
+            border-right: 0;
+
+            &:last-of-type {
+                border-right: 1px solid #9f9fbd;
+            }
+
+            .sword {
+                width: 20px;
+                margin-right: 10px;
+            }
         }
-    }
 
-    .logo {
-        width: 100px;
-        border: 1px solid #9f9fbd;
-    }
+        .logo {
+            width: 100px;
+            border: 1px solid #9f9fbd;
+        }
 
-    &.server {
-        color: white;
-        font-size: 18px;
-        margin-top: 10px;
-        flex-direction: column;
-        background: url("../../images/logo.png");
+        &.server {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+            flex-direction: column;
+
+        }
     }
 }

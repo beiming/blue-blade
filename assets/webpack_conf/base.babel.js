@@ -1,6 +1,51 @@
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {CONFIG, makeEntries} from './_common';
+import ManifestPlugin from "webpack-manifest-plugin";
+
+let sysPath = path;
+const generateManiFestReducer = (manifest, {name, path, isAsset}) => {
+  // fix path start with /
+  if (path.startsWith('/')) {
+    path = path.substr(1);
+  }
+
+  // fix name not include directory
+  let slashIndex = path.indexOf('/');
+  if (slashIndex !== -1) {
+    let dir = path.substring(0, slashIndex + 1);
+    if (!name.startsWith(dir)) {
+      name = dir + name;
+    }
+  }
+
+  // fix asset in css map error
+  if (isAsset) {
+    let dirName = sysPath.dirname(path);
+    let extName = sysPath.extname(path);
+    let baseName = sysPath.basename(path, extName);
+
+    let minusIndex = baseName.lastIndexOf('-');
+    let hash = '';
+    if (minusIndex !== -1) {
+      hash = baseName.substr(minusIndex + 1);
+      if (hash.length === 8) {
+        baseName = baseName.substr(0, minusIndex);
+      }
+    }
+    let nameFromPath = sysPath.join(dirName, baseName + extName);
+    if (nameFromPath !== name) {
+      name = nameFromPath;
+    }
+  }
+
+  // copy resources have the lowest priority
+  if (manifest[name] && manifest[name].length > path.length) {
+    path = manifest[name];
+  }
+
+  return {...manifest, [name]: path};
+};
 
 const optimization = {
   splitChunks: {
@@ -45,6 +90,13 @@ const rules = [
     ]
   }];
 
+const plugins = [
+  new ManifestPlugin({
+    filter: (file) => !file.name.endsWith('.map'),
+    generate: (seed, files) => files.reduce(generateManiFestReducer, seed)
+  }),
+];
+
 const config = {
   entry: Object.assign({common: ['common']}, makeEntries()),
   output: {
@@ -60,7 +112,7 @@ const config = {
   module: {
     rules: rules,
   },
-  plugins: [],
+  plugins: plugins,
   optimization: optimization,
 };
 
