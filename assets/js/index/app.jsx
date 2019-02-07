@@ -1,6 +1,7 @@
 import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import '../../scss/index/styles.scss';
+import swardIcon from '../../images/sword.png';
 
 class User extends PureComponent {
   static propTypes = {
@@ -10,6 +11,7 @@ class User extends PureComponent {
   render() {
     return (
       <div className='user'>
+        <img className='sword' src={swardIcon}/>
         <span>{this.props.user.name}</span>
       </div>
     );
